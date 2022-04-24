@@ -5,6 +5,7 @@ const Student = class {
   constructor() {
     this.el = document.querySelector('#app');
     this.title = document.querySelector('#title');
+    this.auth = JSON.parse(localStorage.getItem('dataLog'));
   }
 
   capitalize(word) {
@@ -23,10 +24,6 @@ const Student = class {
       const searchVal = this.capitalize(this.inputSearch.value);
       instance.get(`/search?search=${searchVal}`)
         .then((response) => {
-          //   document.body.innerHTML = JSON.stringify(response.data);
-          // console.log(response.data);
-          // console.log(response.data.length);
-
           this.tbody.innerHTML = '';
 
           if (response.data.length > 0) {
@@ -79,6 +76,7 @@ const Student = class {
     this.title.innerHTML = '<h1>Home</h1>';
 
     this.headTitle = [' ', 'Nom', 'Prénom', 'Age', 'Genre', 'Email', 'Promotion', 'Spécialité', 'Action'];
+    this.label = ['picture', 'lastname', 'firstname', 'age', 'promo', 'speciality', 'gender', 'email'];
 
     this.searchBox = document.createElement('div');
 
@@ -109,11 +107,35 @@ const Student = class {
     this.resultBox.appendChild(this.tbody);
     this.resultBox.appendChild(this.thead);
     this.el.appendChild(this.searchBox);
+
+    if (this.auth !== null) {
+      const p = document.createElement('div');
+      p.setAttribute('id', 'profils-account');
+
+      this.label.forEach((element) => {
+        this.pBox = document.createElement('p');
+        this.label = document.createElement('label');
+        this.input = document.createElement('input');
+
+        this.label.textContent = element;
+        this.label.setAttribute('for', `input-${element}`);
+        this.input.setAttribute('id', `input-${element}`);
+        this.input.value = this.auth[`${element}`];
+
+        this.pBox.appendChild(this.label);
+        this.pBox.appendChild(this.input);
+        this.el.prepend(this.pBox);
+      });
+    }
   }
 
   run() {
-    this.render();
-    this.onHandleClick();
+    if (this.auth !== null) {
+      this.render();
+      this.onHandleClick();
+    } else {
+      document.location.href = '/login';
+    }
   }
 };
 

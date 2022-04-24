@@ -29,10 +29,15 @@ const Register = class {
       this.password = document.getElementById('input-password').value;
       this.confirmPassword = document.getElementById('input-confirmPassword').value;
 
-      instance.post(`/student?id=${this.id}&age=${this.age}&email=${this.email}&firstname=${this.firstname}&lastname=${this.lastname}&gender=${this.gender}&picture=${this.picture}&promo=${this.promo}&speciality=${this.speciality}&password=${this.password}&picture=${this.picture}`)
-        .then(() => {
-          document.location.href = '/login';
-        });
+      if (this.password === this.confirmPassword
+        && this.password !== '' && this.confirmPassword !== '') {
+        instance.post(`/student?id=${this.id}&age=${this.age}&email=${this.email}&firstname=${this.firstname}&lastname=${this.lastname}&gender=${this.gender}&picture=${this.picture}&promo=${this.promo}&speciality=${this.speciality}&password=${this.password}&picture=${this.picture}`)
+          .then(() => {
+            document.location.href = '/login';
+          });
+      } else {
+        document.location.href = '/register';
+      }
     });
   }
 

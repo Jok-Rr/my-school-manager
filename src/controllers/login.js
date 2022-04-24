@@ -14,11 +14,20 @@ const Login = class {
         'x-api-key': 'mMbMCpdpaV5gU6pKGPS848jkUrWzt0hU31IqTZiV'
       }
     });
+    this.loginBtn.addEventListener('click', () => {
+      this.email = document.getElementById('input-email').value;
+      this.password = document.getElementById('input-password').value;
 
-    document.addEventListener('DOMContentLoaded', () => {
-      instance.get(`/student?id=${this.id}`)
+      console.log(this.password);
+      console.log(this.email);
+      instance.get(`/auth?email=${this.email}`)
         .then((response) => {
-          console.log(response);
+          if (response.data.Items[0].password === this.password) {
+            localStorage.setItem('dataLog', JSON.stringify(response.data.Items[0]));
+            document.location.href = '/';
+          } else {
+            document.location.href = '/login';
+          }
         });
     });
   }

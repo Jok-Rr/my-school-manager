@@ -8,6 +8,7 @@ const Student = class {
     const queryString = window.location.search;
     this.urlParams = new URLSearchParams(queryString);
     this.promo = this.urlParams.get('promo');
+    this.auth = JSON.parse(localStorage.getItem('dataLog'));
   }
 
   onHandleClick() {
@@ -59,7 +60,7 @@ const Student = class {
   render() {
     this.title.innerHTML = `La classe des " ${this.promo} "`;
 
-    this.headTitle = [' ', 'Nom', 'Prénom', 'Age', 'Email', 'Promotion', 'Spécialité', 'Action'];
+    this.headTitle = [' ', 'Nom', 'Prénom', 'Age', 'Genre', 'Email', 'Promotion', 'Spécialité', 'Action'];
 
     this.searchBox = document.createElement('div');
 
@@ -84,8 +85,12 @@ const Student = class {
   }
 
   run() {
-    this.render();
-    this.onHandleClick();
+    if (this.auth !== null) {
+      this.render();
+      this.onHandleClick();
+    } else {
+      document.location.href = '/login';
+    }
   }
 };
 

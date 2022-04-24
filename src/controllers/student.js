@@ -55,15 +55,6 @@ const Student = class {
       this.promo = document.getElementById('input-promo').value;
       this.speciality = document.getElementById('input-speciality').value;
 
-      console.log(this.age);
-      console.log(this.email);
-      console.log(this.firstname);
-      console.log(this.lastname);
-      console.log(this.gender);
-      console.log(this.picture);
-      console.log(this.promo);
-      console.log(this.speciality);
-
       instance.put(`/student?id=${this.id}&age=${this.age}&email=${this.email}&firstname=${this.firstname}&lastname=${this.lastname}&gender=${this.gender}&picture=${this.picture}&promo=${this.promo}&speciality=${this.speciality}`);
       setTimeout(() => {
         document.location.href = `/student?id=${this.id}`;
@@ -88,8 +79,12 @@ const Student = class {
   }
 
   run() {
-    this.render();
-    this.onHandleClick();
+    if (this.auth !== null) {
+      this.render();
+      this.onHandleClick();
+    } else {
+      document.location.href = '/login';
+    }
   }
 };
 

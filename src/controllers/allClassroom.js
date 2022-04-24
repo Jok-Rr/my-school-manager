@@ -8,6 +8,7 @@ const Student = class {
     const queryString = window.location.search;
     this.urlParams = new URLSearchParams(queryString);
     this.id = this.urlParams.get('id');
+    this.auth = JSON.parse(localStorage.getItem('dataLog'));
   }
 
   onHandleClick() {
@@ -70,8 +71,12 @@ const Student = class {
   }
 
   run() {
-    this.render();
-    this.onHandleClick();
+    if (this.auth !== null) {
+      this.render();
+      this.onHandleClick();
+    } else {
+      document.location.href = '/login';
+    }
   }
 };
 

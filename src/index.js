@@ -5,6 +5,7 @@ import AllClassroom from './controllers/allClassroom';
 import Classroom from './controllers/classroom';
 import Login from './controllers/login';
 import Register from './controllers/register';
+import Logout from './controllers/logout';
 
 const Routes = class {
   constructor() {
@@ -31,7 +32,12 @@ const Routes = class {
     {
       url: '/register',
       controller: new Register()
+    },
+    {
+      url: '/logout',
+      controller: new Logout()
     }];
+    this.auth = JSON.parse(localStorage.getItem('dataLog'));
   }
 
   routesInit() {
@@ -44,7 +50,17 @@ const Routes = class {
     });
   }
 
+  render() {
+    if (this.auth === null) {
+      const logged = document.getElementsByClassName('logged');
+      for (let i = 0; i < logged.length; i += 1) {
+        logged[i].style.display = 'none';
+      }
+    }
+  }
+
   run() {
+    this.render();
     this.routesInit();
   }
 };
