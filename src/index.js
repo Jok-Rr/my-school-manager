@@ -52,6 +52,11 @@ const Routes = class {
 
   render() {
     if (this.auth === null) {
+      const notLogged = document.getElementsByClassName('not-logged');
+      for (let i = 0; i < notLogged.length; i += 1) {
+        notLogged[i].style.display = 'none';
+      }
+    } else if (this.auth !== null) {
       const logged = document.getElementsByClassName('logged');
       for (let i = 0; i < logged.length; i += 1) {
         logged[i].style.display = 'none';

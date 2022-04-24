@@ -28,7 +28,6 @@ const Student = class {
 
           if (response.data.length > 0) {
             response.data.forEach((element) => {
-              console.log(element);
               this.tr = document.createElement('tr');
               this.a = document.createElement('a');
               this.figure = document.createElement('figure');
@@ -65,8 +64,6 @@ const Student = class {
               this.cellAction.appendChild(this.a);
               this.cellAction.appendChild(this.aClassroom);
             });
-          } else {
-            console.log('no result');
           }
         });
     });

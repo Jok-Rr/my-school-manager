@@ -22,7 +22,6 @@ const Student = class {
     document.addEventListener('DOMContentLoaded', () => {
       instance.get('/classrooms')
         .then((response) => {
-          console.log(response.data);
           response.data.Items.forEach((element, i) => {
             this.tr = document.createElement('tr');
             this.a = document.createElement('a');

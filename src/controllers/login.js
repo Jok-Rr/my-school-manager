@@ -18,8 +18,6 @@ const Login = class {
       this.email = document.getElementById('input-email').value;
       this.password = document.getElementById('input-password').value;
 
-      console.log(this.password);
-      console.log(this.email);
       instance.get(`/auth?email=${this.email}`)
         .then((response) => {
           if (response.data.Items[0].password === this.password) {
