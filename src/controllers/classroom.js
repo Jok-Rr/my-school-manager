@@ -4,6 +4,7 @@ import axios from 'axios';
 const Student = class {
   constructor() {
     this.el = document.querySelector('#app');
+    this.title = document.querySelector('#title');
     const queryString = window.location.search;
     this.urlParams = new URLSearchParams(queryString);
     this.promo = this.urlParams.get('promo');
@@ -56,7 +57,7 @@ const Student = class {
   }
 
   render() {
-    this.el.innerHTML = `La classe des " ${this.promo} "`;
+    this.title.innerHTML = `La classe des " ${this.promo} "`;
 
     this.headTitle = [' ', 'Nom', 'Prénom', 'Age', 'Email', 'Promotion', 'Spécialité', 'Action'];
 

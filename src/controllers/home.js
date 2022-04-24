@@ -4,6 +4,7 @@ import axios from 'axios';
 const Student = class {
   constructor() {
     this.el = document.querySelector('#app');
+    this.title = document.querySelector('#title');
   }
 
   capitalize(word) {
@@ -75,7 +76,7 @@ const Student = class {
   }
 
   render() {
-    this.el.innerHTML = '<h1>Home</h1>';
+    this.title.innerHTML = '<h1>Home</h1>';
 
     this.headTitle = [' ', 'Nom', 'Prénom', 'Age', 'Genre', 'Email', 'Promotion', 'Spécialité', 'Action'];
 

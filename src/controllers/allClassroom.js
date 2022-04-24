@@ -4,6 +4,7 @@ import axios from 'axios';
 const Student = class {
   constructor() {
     this.el = document.querySelector('#app');
+    this.title = document.querySelector('#title');
     const queryString = window.location.search;
     this.urlParams = new URLSearchParams(queryString);
     this.id = this.urlParams.get('id');
@@ -42,7 +43,7 @@ const Student = class {
   }
 
   render() {
-    this.el.innerHTML = '<h1>Toutes les classes</h1>';
+    this.title.innerHTML = '<h1>Toutes les classes</h1>';
 
     this.headTitle = ['#', 'Nom', 'Action'];
 
